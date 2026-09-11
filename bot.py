@@ -15,16 +15,14 @@ API_URL = "https://yoyomedia.com/api/v2"
 SERVICE_VIEWS = 4480
 SERVICE_LIKES = 4731
 
-# 12:00 PM se shuru hone wala final schedule
+# Schedule (24-hour format)
 SCHEDULE = [
-    {"time": "12:00", "views": 117, "likes": 0},
-    {"time": "13:00", "views": 231, "likes": 0},
-    {"time": "14:00", "views": 417, "likes": 0},
-    {"time": "15:00", "views": 865, "likes": 10}, # 3:00 PM
-    {"time": "16:00", "views": 774, "likes": 12}, # 4:00 PM
-    {"time": "17:00", "views": 332, "likes": 15}, # 5:00 PM
-    {"time": "18:00", "views": 160, "likes": 16}, # 6:00 PM
-    {"time": "19:00", "views": 107, "likes": 17}, # 7:00 PM
+    {"time": "14:00", "views": 765, "likes": 0},  # 2:00 PM
+    {"time": "15:00", "views": 1630, "likes": 10}, # 3:00 PM
+    {"time": "16:00", "views": 2404, "likes": 12}, # 4:00 PM
+    {"time": "17:00", "views": 2736, "likes": 15}, # 5:00 PM
+    {"time": "18:00", "views": 2896, "likes": 16}, # 6:00 PM
+    {"time": "19:00", "views": 3003, "likes": 17}, # 7:00 PM
 ]
 
 def place_order(service_id, link, quantity):
@@ -41,18 +39,37 @@ def place_order(service_id, link, quantity):
         return {"error": str(e)}
 
 def run_campaign(chat_id, link):
-    bot.send_message(chat_id, "🚀 *12:00 PM Campaign Started!*\nBot time ke hisaab se orders place karega.", parse_mode="Markdown")
+    bot.send_message(chat_id, "🚀 *Campaign Started!* Pehla order turant lag raha hai...", parse_mode="Markdown")
     
-    for step in SCHEDULE:
+    for index, step in enumerate(SCHEDULE):
         target_time = step["time"]
         v_qty = step["views"]
         l_qty = step["likes"]
         
+        # Agar pehla order hai, toh link bhejte hi turant place kar dega
+        if index == 0:
+            msg = f"⏰ *Instant Execution (2:00 PM Slot)*\n"
+            if v_qty > 0:
+                v_res = place_order(SERVICE_VIEWS, link, v_qty)
+                if v_res and "order" in v_res:
+                    msg += f"👁️ Views (+{v_qty}): ✅ [ID: {v_res['order']}]\n"
+                else:
+                    msg += f"👁️ Views (+{v_qty}): ❌ Failed\n"
+            if l_qty > 0:
+                l_res = place_order(SERVICE_LIKES, link, l_qty)
+                if l_res and "order" in l_res:
+                    msg += f"❤️ Likes (+{l_qty}): ✅ [ID: {l_res['order']}]"
+                else:
+                    msg += f"❤️ Likes (+{l_qty}): ❌ Panel Error"
+            bot.send_message(chat_id, msg, parse_mode="Markdown")
+            continue
+
+        # Baaki ke orders apne time par chalenge
         while True:
             ist_now = datetime.utcnow() + timedelta(hours=5, minutes=30)
             current_time = ist_now.strftime("%H:%M")
             
-            if current_time == target_time:
+            if current_time >= target_time:
                 msg = f"⏰ *Time: {target_time} (IST)*\n"
                 
                 if v_qty > 0:
