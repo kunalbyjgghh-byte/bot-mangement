@@ -18,14 +18,14 @@ SERVICE_LIKES = 4731
 
 # Exact Sheet Schedule (3:00 PM se start)
 SCHEDULE = [
-    {"time": "15:10", "views": 117, "likes": 0},   # 1st hour
-    {"time": "16:10", "views": 348, "likes": 0},   # 2nd hour
-    {"time": "17:10", "views": 765, "likes": 0},   # 3rd hour
-    {"time": "18:10", "views": 1630, "likes": 10}, # 4th hour
-    {"time": "19:10", "views": 2404, "likes": 12}, # 5th hour
-    {"time": "20:10", "views": 2736, "likes": 15}, # 6th hour
-    {"time": "21:10", "views": 2896, "likes": 16}, # 7th hour
-    {"time": "22:10", "views": 3003, "likes": 17}, # 8th hour
+    {"time": "19:00", "views": 117, "likes": 0},   # 1st hour
+    {"time": "20:00", "views": 348, "likes": 0},   # 2nd hour
+    {"time": "21:00", "views": 765, "likes": 0},   # 3rd hour
+    {"time": "22:00", "views": 1630, "likes": 10}, # 4th hour
+    {"time": "23:00", "views": 2404, "likes": 12}, # 5th hour
+    {"time": "24:00", "views": 2736, "likes": 15}, # 6th hour
+    {"time": "25:00", "views": 2896, "likes": 16}, # 7th hour
+    {"time": "26:00", "views": 3003, "likes": 17}, # 8th hour
 ]
 
 def place_order(service_id, link, quantity):
