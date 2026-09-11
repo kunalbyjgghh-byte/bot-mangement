@@ -15,16 +15,16 @@ API_URL = "https://yoyomedia.com/api/v2"
 SERVICE_VIEWS = 4480
 SERVICE_LIKES = 4731
 
-# 11:40 AM se shuru hone wala schedule
+# 12:00 PM se shuru hone wala final schedule
 SCHEDULE = [
-    {"time": "11:40", "views": 117, "likes": 0},
-    {"time": "12:40", "views": 231, "likes": 0},
-    {"time": "13:40", "views": 417, "likes": 0},
-    {"time": "14:40", "views": 865, "likes": 10}, # 2:40 PM
-    {"time": "15:40", "views": 774, "likes": 12}, # 3:40 PM
-    {"time": "16:40", "views": 332, "likes": 15}, # 4:40 PM
-    {"time": "17:40", "views": 160, "likes": 16}, # 5:40 PM
-    {"time": "18:40", "views": 107, "likes": 17}, # 6:40 PM
+    {"time": "12:00", "views": 117, "likes": 0},
+    {"time": "13:00", "views": 231, "likes": 0},
+    {"time": "14:00", "views": 417, "likes": 0},
+    {"time": "15:00", "views": 865, "likes": 10}, # 3:00 PM
+    {"time": "16:00", "views": 774, "likes": 12}, # 4:00 PM
+    {"time": "17:00", "views": 332, "likes": 15}, # 5:00 PM
+    {"time": "18:00", "views": 160, "likes": 16}, # 6:00 PM
+    {"time": "19:00", "views": 107, "likes": 17}, # 7:00 PM
 ]
 
 def place_order(service_id, link, quantity):
@@ -41,7 +41,7 @@ def place_order(service_id, link, quantity):
         return {"error": str(e)}
 
 def run_campaign(chat_id, link):
-    bot.send_message(chat_id, "🚀 *11:40 AM Campaign Started!*\nBot time ke hisaab se orders place karega.", parse_mode="Markdown")
+    bot.send_message(chat_id, "🚀 *12:00 PM Campaign Started!*\nBot time ke hisaab se orders place karega.", parse_mode="Markdown")
     
     for step in SCHEDULE:
         target_time = step["time"]
