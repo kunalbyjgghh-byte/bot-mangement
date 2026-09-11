@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 # Naya Bot Token
-BOT_TOKEN = "8901542723:AAEhjajWnzyDXq03RPA28EZfi7lHbC-RYxo"
+BOT_TOKEN = "8901542723:AAFd54ZpaMc9DyOdqEKp6KFsEXlFMzgygYU"
 bot = telebot.TeleBot(BOT_TOKEN)
 
 API_KEY = "e162df9b7dce5201f22c0decd4d4dff931c9904c708e1342b9da9b086e32b1ac"
@@ -18,14 +18,14 @@ SERVICE_LIKES = 4731
 
 # Exact Sheet Schedule (3:00 PM se start)
 SCHEDULE = [
-    {"time": "15:00", "views": 117, "likes": 0},   # 1st hour
-    {"time": "16:00", "views": 348, "likes": 0},   # 2nd hour
-    {"time": "17:00", "views": 765, "likes": 0},   # 3rd hour
-    {"time": "18:00", "views": 1630, "likes": 10}, # 4th hour
-    {"time": "19:00", "views": 2404, "likes": 12}, # 5th hour
-    {"time": "20:00", "views": 2736, "likes": 15}, # 6th hour
-    {"time": "21:00", "views": 2896, "likes": 16}, # 7th hour
-    {"time": "22:00", "views": 3003, "likes": 17}, # 8th hour
+    {"time": "15:10", "views": 117, "likes": 0},   # 1st hour
+    {"time": "16:10", "views": 348, "likes": 0},   # 2nd hour
+    {"time": "17:10", "views": 765, "likes": 0},   # 3rd hour
+    {"time": "18:10", "views": 1630, "likes": 10}, # 4th hour
+    {"time": "19:10", "views": 2404, "likes": 12}, # 5th hour
+    {"time": "20:10", "views": 2736, "likes": 15}, # 6th hour
+    {"time": "21:10", "views": 2896, "likes": 16}, # 7th hour
+    {"time": "22:10", "views": 3003, "likes": 17}, # 8th hour
 ]
 
 def place_order(service_id, link, quantity):
