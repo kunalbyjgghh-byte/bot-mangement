@@ -17,16 +17,16 @@ API_URL = "https://yoyomedia.com/api/v2"
 SERVICE_VIEWS = 4480
 SERVICE_LIKES = 4731
 
-# 7:20 PM (19:20 IST) se shuru hone wala Exact Schedule (Correct 24h format)
+# 7:30 PM (19:30 IST) se shuru hone wala Exact Schedule (Correct 24h format)
 SCHEDULE = [
-    {"time": "19:20", "views": 117, "likes": 0},   # 1st hour (7:20 PM)
-    {"time": "20:20", "views": 348, "likes": 0},   # 2nd hour (8:20 PM)
-    {"time": "21:20", "views": 765, "likes": 0},   # 3rd hour (9:20 PM)
-    {"time": "22:20", "views": 1630, "likes": 10}, # 4th hour (10:20 PM)
-    {"time": "23:20", "views": 2404, "likes": 12}, # 5th hour (11:20 PM)
-    {"time": "00:20", "views": 2736, "likes": 15}, # 6th hour (12:20 AM next day)
-    {"time": "01:20", "views": 2896, "likes": 16}, # 7th hour (01:20 AM next day)
-    {"time": "02:20", "views": 3003, "likes": 17}, # 8th hour (02:20 AM next day)
+    {"time": "19:30", "views": 117, "likes": 0},   # 1st hour (7:30 PM)
+    {"time": "20:30", "views": 348, "likes": 0},   # 2nd hour (8:30 PM)
+    {"time": "21:30", "views": 765, "likes": 0},   # 3rd hour (9:30 PM)
+    {"time": "22:30", "views": 1630, "likes": 10}, # 4th hour (10:30 PM)
+    {"time": "23:30", "views": 2404, "likes": 12}, # 5th hour (11:30 PM)
+    {"time": "00:30", "views": 2736, "likes": 15}, # 6th hour (12:30 AM next day)
+    {"time": "01:30", "views": 2896, "likes": 16}, # 7th hour (01:30 AM next day)
+    {"time": "02:30", "views": 3003, "likes": 17}, # 8th hour (02:30 AM next day)
 ]
 
 def place_order(service_id, link, quantity):
@@ -46,7 +46,7 @@ def get_ist_now():
     return datetime.utcnow() + timedelta(hours=5, minutes=30)
 
 def run_campaign(chat_id, link):
-    bot.send_message(chat_id, "🚀 *Campaign Started!*\nBot 7:20 PM (19:20 IST) se schedule ke hisaab se orders lagana shuru karega.", parse_mode="Markdown")
+    bot.send_message(chat_id, "🚀 *Campaign Started!*\nBot 7:30 PM (19:30 IST) se schedule ke hisaab se orders lagana shuru karega.", parse_mode="Markdown")
     
     for step in SCHEDULE:
         target_time_str = step["time"]
@@ -58,7 +58,7 @@ def run_campaign(chat_id, link):
             current_time_str = now.strftime("%H:%M")
             
             if current_time_str >= target_time_str and (
-                # Handle night time crossover (e.g. 19:20 vs 00:20)
+                # Night time crossover logic
                 int(current_time_str.split(":")[0]) < 12 if int(target_time_str.split(":")[0]) < 12 else True
             ):
                 msg = f"⏰ *Time Slot: {target_time_str} (IST)*\n"
@@ -78,10 +78,10 @@ def run_campaign(chat_id, link):
                         msg += f"❤️ Likes (+{l_qty}): ❌ Panel Error"
                         
                 bot.send_message(chat_id, msg, parse_mode="Markdown")
-                time.sleep(60) # Wait 60s to prevent duplicate orders in same minute
+                time.sleep(60) # Wait 60s
                 break
             else:
-                time.sleep(15) # Prevent CPU freezing / Render crashes
+                time.sleep(15) # Efficient sleep
             
     bot.send_message(chat_id, "🎉 *Full Campaign Successfully Completed!*", parse_mode="Markdown")
 
